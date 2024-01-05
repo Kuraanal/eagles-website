@@ -2,19 +2,13 @@ const hero = document.querySelector(".hero");
 const parallax_middle = hero.querySelector(".parallax-middle");
 const parallax_top = hero.querySelector(".parallax-top");
 
-const middlewindowWidth = window.innerWidth / 15;
-const topwindowwidth = window.innerWidth / 5;
+var moveForce = 10;
 
-console.log(parallax_middle);
-console.log(parallax_top);
+document.addEventListener('mousemove', function (e) {
+    var docX = window.innerWidth;
+    var moveX = (e.pageX - docX / 2) / (docX / 2) * -moveForce;
+    var moveXMiddle = (e.pageX - docX / 2) / (docX / 2) * - (moveForce + 10);
 
-hero.addEventListener("mousemove", (e) => {
-    const middlemouseX = (e.clientX / middlewindowWidth) + 8;
-    const topmouseX = (e.clientX / topwindowwidth);
-
-    
-    parallax_middle.style.transform = `translateX(${middlemouseX}%)`;
-    parallax_top.style.transform = `translateX(-${topmouseX}%)`;
-}); 
-
-parallax_middle.sty
+    parallax_middle.style.transform = `translateX(${moveXMiddle}%)`;
+    parallax_top.style.transform = `translateX(-${moveX}%)`;
+});
